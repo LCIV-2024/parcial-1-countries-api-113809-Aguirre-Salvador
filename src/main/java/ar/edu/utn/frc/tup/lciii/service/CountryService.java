@@ -22,6 +22,7 @@ public class CountryService {
         private CountryRepository countryRepository;
 
         private final RestTemplate restTemplate;
+
     @Qualifier("modelMapper")
     @Autowired
     private ModelMapper modelMapper;
