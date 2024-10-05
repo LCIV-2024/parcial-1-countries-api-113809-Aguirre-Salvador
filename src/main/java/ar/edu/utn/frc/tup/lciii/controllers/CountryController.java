@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 @RequestMapping("api/countries")
 public class CountryController {
 
-    private final CountryService countryService;
+    @Autowired
+    private CountryService countryService;
 
     @Autowired
     private ModelMapper modelMapper;
