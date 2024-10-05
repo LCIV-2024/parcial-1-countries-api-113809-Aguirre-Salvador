@@ -57,18 +57,18 @@ public class CountryService {
                 List<Country> countries = getAllCountries();
 
                 if (code != null && !code.isEmpty()) {
-                        countries = countries.stream().filter(c -> c.getCode().equals(code)).collect(Collectors.toList());
+                        countries = countries.stream().filter(c -> c.getCode().toLowerCase().equals(code.toLowerCase())).collect(Collectors.toList());
                 }
 
                 if (name != null && !name.isEmpty()) {
-                        countries = countries.stream().filter(c -> c.getName().contains(name)).collect(Collectors.toList());
+                        countries = countries.stream().filter(c -> c.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
                 }
                 return countries;
         }
 
         public List<Country> getCountriesByContinent(String continent) {
                 List<Country> countries = getAllCountries();
-                return countries.stream().filter(c -> c.getRegion().contains(continent)).collect(Collectors.toList());
+                return countries.stream().filter(c -> c.getRegion().toLowerCase().contains(continent.toLowerCase())).collect(Collectors.toList());
         }
 
         public List<Country> getCountriesByLanguage(String language) {
