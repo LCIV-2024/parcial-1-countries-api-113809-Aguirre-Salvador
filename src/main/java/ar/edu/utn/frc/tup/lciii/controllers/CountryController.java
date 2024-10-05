@@ -26,18 +26,24 @@ public class CountryController {
     public ResponseEntity<List<CountryDTO>> getCountries(@RequestParam(required = false) String code,
                                                          @RequestParam(required = false) String name) {
         List<Country> response = new ArrayList<>();
-
         if (code == null && name == null) {
             response = countryService.getAllCountries();
         }
-
         else {
             response = countryService.getAllCountriesWithFilters(name,code);
         }
-
         List<CountryDTO> dtoResponse = response.stream().map(country ->
                 modelMapper.map(country, CountryDTO.class)).collect(Collectors.toList());
 
+        return ResponseEntity.ok(dtoResponse);
+    }
+
+    @GetMapping("{continent}")
+    public ResponseEntity<List<CountryDTO>> getCountriesByContinent(@PathVariable String continent){
+        List<Country> response = countryService.getCountriesByContinent(continent);
+        List<CountryDTO> dtoResponse = response.stream().map(country ->
+                modelMapper.map(country, CountryDTO.class)).collect(Collectors.toList());
+        
         return ResponseEntity.ok(dtoResponse);
     }
 }
