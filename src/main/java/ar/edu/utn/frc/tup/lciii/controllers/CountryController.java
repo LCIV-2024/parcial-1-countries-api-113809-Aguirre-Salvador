@@ -38,12 +38,21 @@ public class CountryController {
         return ResponseEntity.ok(dtoResponse);
     }
 
-    @GetMapping("{continent}")
+    @GetMapping("{continent}/continent")
     public ResponseEntity<List<CountryDTO>> getCountriesByContinent(@PathVariable String continent){
         List<Country> response = countryService.getCountriesByContinent(continent);
         List<CountryDTO> dtoResponse = response.stream().map(country ->
                 modelMapper.map(country, CountryDTO.class)).collect(Collectors.toList());
-        
+
+        return ResponseEntity.ok(dtoResponse);
+    }
+
+    @GetMapping("{language}/language")
+    public ResponseEntity<List<CountryDTO>> getCountriesByLanguage(@PathVariable String language){
+        List<Country> response = countryService.getCountriesByLanguage(language);
+        List<CountryDTO> dtoResponse = response.stream().map(country ->
+                modelMapper.map(country, CountryDTO.class)).collect(Collectors.toList());
+
         return ResponseEntity.ok(dtoResponse);
     }
 }

@@ -67,4 +67,17 @@ public class CountryService {
         public List<Country> getCountriesByContinent(String continent) {
                 List<Country> countries = getAllCountries();
                 return countries.stream().filter(c -> c.getRegion().contains(continent)).collect(Collectors.toList());
-        }}
+        }
+
+        public List<Country> getCountriesByLanguage(String language) {
+                List<Country> countries = getAllCountries();
+                ArrayList<Country> arrayList = new ArrayList<>();
+                for (Country country : countries) {
+                        if (country.getLanguages() != null && country.getLanguages().containsValue(language)) {
+                                arrayList.add(country);
+                        }
+                }
+
+                return arrayList;
+        }
+}
