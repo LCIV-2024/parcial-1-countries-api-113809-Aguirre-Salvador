@@ -15,4 +15,12 @@ public class CountryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
+    private String name;
+    @Column
+    private String code;
+    @Column
+    private Double area;
+    @Column
+    private Long population;
 }
